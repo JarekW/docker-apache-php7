@@ -3,29 +3,30 @@ FROM ubuntu:16.04
 ENV TERM xterm
 
 RUN apt-get update -y && apt-get install -y software-properties-common language-pack-en-base && \
+    LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     apt-get update -y && apt-get install -y \
     vim \
     mc \
     acl \
     apache2 \
-    libapache2-mod-php \
+    libapache2-mod-php7.1 \
     python-pycurl \
-    php \
-    php-cli \
-    php-gd \
-    php-curl \
-    php-intl \
-    php-mcrypt \
-    php-bcmath \
-    php-xml \
-    php-xml-rpc2 \
-    php-readline \
-    php-json \
-    php-mysql \
-    php-sqlite3 \
-    php-mbstring \
-    php-soap \
-    php-zip \
+    php7.1 \
+    php7.1-cli \
+    php7.1-gd \
+    php7.1-curl \
+    php7.1-intl \
+    php7.1-bcmath \
+    php7.1-json \
+    php7.1-mbstring \
+    php7.1-mysql \
+    php7.1-opcache \
+    php7.1-readline \
+    php7.1-soap \
+    php7.1-sqlite3 \
+    php7.1-xml \
+    php7.1-xmlrpc \
+    php7.1-zip \
     php-xdebug \
     python-mysqldb \
     python-selinux && \
@@ -33,9 +34,9 @@ RUN apt-get update -y && apt-get install -y software-properties-common language-
     rm -rf /var/lib/apt/lists/*
 
 COPY application.conf /etc/apache2/sites-available/application.conf
-COPY php_config.ini /etc/php/7.0/mods-available/
-RUN ln -s /etc/php/7.0/mods-available/php_config.ini /etc/php/7.0/apache2/conf.d/80-php_config.ini && \
-    ln -s /etc/php/7.0/mods-available/php_config.ini /etc/php/7.0/cli/conf.d/80-php_config.ini
+COPY php_config.ini /etc/php/7.1/mods-available/
+RUN ln -s /etc/php/7.1/mods-available/php_config.ini /etc/php/7.1/apache2/conf.d/80-php_config.ini && \
+    ln -s /etc/php/7.1/mods-available/php_config.ini /etc/php/7.1/cli/conf.d/80-php_config.ini
 
 RUN a2enmod rewrite && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
