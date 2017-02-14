@@ -62,6 +62,8 @@ VOLUME /var/www/application
 EXPOSE 80
 EXPOSE 443
 
+ENV PHP_IDE_CONFIG "serverName=localhost"
+
 WORKDIR /var/www/application
 
 CMD rm -f /run/apache2/apache2.pid && /usr/sbin/apache2ctl -D FOREGROUND

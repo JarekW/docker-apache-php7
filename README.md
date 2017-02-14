@@ -4,7 +4,7 @@ version: '2'
 
 services:
     web:
-        build: docker
+        image: jarekw/apache-php7:7.1
         container_name: project-web
         ports:
             - 80:80
