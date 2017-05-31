@@ -56,6 +56,8 @@ RUN a2enmod rewrite ssl include headers && \
     a2dissite default-ssl && \
     a2ensite application && \
     rm -rf /var/www/html && \
+    usermod -u 1000 www-data && \
+    groupmod -g 1000 www-data && \
     usermod -s /bin/bash www-data && \
     touch /var/www/.bash_history && \
     mkdir /var/www/.composer && \
