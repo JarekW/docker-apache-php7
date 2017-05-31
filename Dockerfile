@@ -56,8 +56,10 @@ RUN a2enmod rewrite ssl include headers && \
     a2ensite application && \
     rm -rf /var/www/html && \
     usermod -s /bin/bash www-data && \
-    chown www-data:www-data /var/www && \
-    touch /var/www/.bash_history
+    touch /var/www/.bash_history && \
+    mkdir /var/www/.composer && \
+    chown -R www-data:www-data /var/www
+
 
 #composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
