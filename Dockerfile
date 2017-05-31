@@ -5,6 +5,7 @@ ENV TERM xterm
 RUN apt-get update -y && apt-get install -y software-properties-common language-pack-en-base && \
     LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     apt-get update -y && apt-get install -y \
+    git \
     vim \
     mc \
     acl \
